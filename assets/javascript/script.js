@@ -14,11 +14,6 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
-    var trainName = "";
-    var distination = "";
-    var startTime = "";
-    var freuency = 0;
-
     function currentTime() {
         var current = moment().format('hh:mm');
         $('#currentTime').html(current);
@@ -45,19 +40,19 @@ $(document).ready(function () {
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-        if ($("#train-name").val().trim() === "" ||
-            $("#destination").val().trim() === "" ||
-            $("#first-train").val().trim() === "" ||
-            $("#frequency").val().trim() === "") {
+        var trainName = $("#train-name").val().trim();
+        var destination = $("#destination").val().trim();
+        var startTime = $("#first-train").val().trim();
+        var frequency = $("#frequency").val().trim();
 
-            $('#missingDataModal').modal({options});
+        if (trainName === "" ||
+            destination === "" ||
+            startTime === "" ||
+            frequency === "") {
+
+            $('#missingDataModal').modal();
 
         } else {
-
-            trainName = $("#train-name").val().trim();
-            destination = $("#destination").val().trim();
-            startTime = $("#first-train").val().trim();
-            frequency = $("#frequency").val().trim();
 
             $(".form-field").val("");
 
